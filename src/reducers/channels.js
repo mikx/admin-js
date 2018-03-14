@@ -2,7 +2,8 @@ import Store from '../store/channels';
 
 export const initialState = Store;
 
-export default function recipeReducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
+
   switch (action.type) {
 
     case 'CHANNELS_ERROR': {
@@ -19,7 +20,7 @@ export default function recipeReducer(state = initialState, action) {
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
         channels = action.data.map(item => ({
-          id: item.id,
+          id: item.uid,
           name: item.name,
         }));
       }

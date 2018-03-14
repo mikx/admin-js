@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { getChannels, setError } from '../actions/channels';
+import { loadChannels, setError } from '../actions/channels'
 
 class Channels extends Component {
+
   static propTypes = {
     Layout: PropTypes.func.isRequired,
     channels: PropTypes.shape({
@@ -17,12 +18,11 @@ class Channels extends Component {
 
   static defaultProps = { }
 
-  componentDidMount = () => this.fetchChannels();
+  componentDidMount = () => { }
 
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchChannels = () => { }
 
   render = () => {
     const { Layout, channels } = this.props;
@@ -31,10 +31,11 @@ class Channels extends Component {
         error={channels.error}
         loading={channels.loading}
         channels={channels.channels}
-        reFetch={() => this.fetchChannels()}
+        reFetch={() => this.getChannels()}
       />
     );
   }
+
 }
 
 const mapStateToProps = state => ({
@@ -44,8 +45,10 @@ const mapStateToProps = state => ({
   },
 });
 
-const mapDispatchToProps = {
+
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
   setError,
-};
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Channels);

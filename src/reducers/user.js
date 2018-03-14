@@ -1,9 +1,22 @@
-import Store from '../store/user';
+import store from '../store/user';
 
-export const initialState = Store;
+export const initialState = store;
 
-export default function userReducer(state = initialState, action) {
-  switch (action.type) {
+export default function userReducer(state = initialState, action) { switch (action.type) {
+
+    case 'USER_SESSION': {
+      if (action.data && action.data.uid) {
+        return {
+          ...state,
+          loading: false,
+          error: null,
+          uid: action.data.uid || action.data.uuid,
+          name: action.data.name,
+        };
+      }
+      return initialState;
+    }
+
     case 'USER_LOGIN': {
       if (action.data) {
         return {
@@ -11,10 +24,12 @@ export default function userReducer(state = initialState, action) {
           loading: false,
           error: null,
           uid: action.data.meta.uid,
+          name: 'Cap. Nemo',
         };
       }
       return initialState;
     }
+
     case 'USER_DETAILS_UPDATE': {
       if (action.data) {
         return {
@@ -29,6 +44,7 @@ export default function userReducer(state = initialState, action) {
       }
       return initialState;
     }
+
     case 'USER_ERROR': {
       if (action.data) {
         return {
@@ -39,9 +55,11 @@ export default function userReducer(state = initialState, action) {
       }
       return initialState;
     }
-    case 'USER_RESET': {
+
+    case 'USER_LOGOUT': {
       return initialState;
     }
+
     default:
       return state;
   }

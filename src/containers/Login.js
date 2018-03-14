@@ -41,9 +41,9 @@ Login.defaultProps = {
 
 const mapStateToProps = state => ({
   user: state.user || {},
-  isLoading: state.status.loading || false,
-  infoMessage: state.status.info || null,
-  errorMessage: state.status.error || null,
+  isLoading:      state.status.loading || false,
+  infoMessage:    state.status.info    || null,
+  errorMessage:   state.status.error   || null,
   successMessage: state.status.success || null,
 });
 

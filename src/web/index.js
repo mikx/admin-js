@@ -21,11 +21,9 @@ const rootElement = document.getElementById('root');
 
 const Root = () => (
   <Provider store={store}>
-    <PersistGate loading={<Loading />} persistor={persistor}>
       <Router>
         <Routes />
       </Router>
-    </PersistGate>
   </Provider>
 );
 

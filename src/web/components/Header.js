@@ -42,6 +42,7 @@ class Header extends Component {
   toggleDropDown = () => this.setState({ isOpen: !this.state.isOpen });
 
   render() {
+
     const { user } = this.props;
     const loggedIn = !!(user && user.uid);
 
@@ -59,7 +60,7 @@ class Header extends Component {
               </div>
               <UncontrolledDropdown nav>
                 <DropdownToggle nav caret>
-                  {loggedIn ? `Hi, ${user.firstName}` : 'My Account'}
+                  {loggedIn ? `Hi, ${user.name}` : 'My Account'}
                 </DropdownToggle>
                 <DropdownMenu>
                   {!loggedIn &&
